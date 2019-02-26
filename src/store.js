@@ -1,9 +1,9 @@
 import {createStore,combineReducers, applyMiddleware} from 'redux';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
-import testReducer from './reducers/testReducers';
+import searchReducer from './reducers/searchReducers';
 
 const store = createStore(combineReducers({
-        testReducer
+        searchReducer
     }),applyMiddleware(logger, thunk));
 export default store;

@@ -1,20 +1,22 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {setName} from '../actions/testActions';
+import {setStateFormSearch} from '../actions/searchActions';
 
 class ComponentTestRedux extends Component {
     constructor(props){
         super(props);
+        this.props.actions.setStateFormSearch(true);
         this.converteName = this.converteName.bind(this);
     }
     converteName(){
-        this.props.actions.setName('Example new name');
+        this.props.actions.setStateFormSearch(true);
     }
     render(){
+        console.log(this.props.searchReducer.showFormSearch)
         return(
             <div>
-                <h1>{this.props.testReducer.name}</h1>
+                <h1>{this.props.searchReducer.showFormSearch}</h1>
                 <a onClick={() => this.converteName()}>Test name</a>
             </div>
         );
@@ -23,14 +25,14 @@ class ComponentTestRedux extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        testReducer: state.testReducer
+        searchReducer: state.searchReducer
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         actions: {
-            setName: bindActionCreators((name) => setName(name), dispatch)
+            setStateFormSearch: bindActionCreators((showFormSearch) => setStateFormSearch(showFormSearch), dispatch)
         }
     }
 }
