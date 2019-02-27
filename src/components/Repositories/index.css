@@ -1,0 +1,46 @@
+.div-info-owner {
+    margin-left: 3%;
+    float: left;
+    display: block;
+}
+.img-git{
+    width: 40px;
+    height: 40px;
+}
+.div-main{
+    
+    overflow:auto;
+}
+.text-name-owner{
+    font-size: 9.5pt;
+    font-style: italic;
+    font-weight: normal;
+    color: darkgray;
+}
+.text-name-repo{
+    font-size: 10pt;
+    font-weight: bold;
+    color: black;
+}
+.div-info-repo {
+    margin-left: 3%;
+    float: right;
+    display: block;
+    font-size: 8pt;
+    font-weight: bold;
+}
+.text-name-lang{
+    font-size: 11pt;
+    font-weight: normal;
+    color: black;
+}
+.star-color{
+    color:gold;
+}
+.text-name-desc{
+    font-size: 9.5pt;
+    font-style: italic;
+    font-weight: normal;
+    color: darkgray;
+    width: 300px;
+}

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Navbar, InputGroup, FormControl, Button} from 'react-bootstrap';
-import {setStateFormSearch} from '../../actions/searchActions';
+import {setStateFormSearch, getRepositoriesFetch} from '../../actions/searchActions';
 
 class Header extends Component {
     constructor(props){
@@ -14,14 +14,15 @@ class Header extends Component {
                 <Navbar.Brand href="/">
                     Test
                 </Navbar.Brand>
-                {this.props.searchReducer.showFormSearch && <InputGroup sm >
+                {this.props.searchReducer.showFormSearch && <InputGroup >
                     <FormControl
                     placeholder="Nombre Repositorio ..."
                     aria-label="Nombre Repositorio ..."
                     aria-describedby="basic-addon2"
                     />
                     <InputGroup.Append>
-                    <Button variant="outline-info">Buscar</Button>
+                    <Button variant="outline-info"
+                        onClick={this.props.actions.getRepositoriesFetch}>Buscar</Button>
                     </InputGroup.Append>
                 </InputGroup>}
             </Navbar>
@@ -37,7 +38,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         actions: {
-            setStateFormSearch: bindActionCreators((showFormSearch) => setStateFormSearch(showFormSearch), dispatch)
+            setStateFormSearch: bindActionCreators((showFormSearch) => setStateFormSearch(showFormSearch), dispatch),
+            getRepositoriesFetch: bindActionCreators(() => getRepositoriesFetch(), dispatch)
         }
     }
 }
