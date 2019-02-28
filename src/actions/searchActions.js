@@ -105,13 +105,13 @@ const getRepositoryFetch = (owner, nameRepo) => {
     }
 }
 
-const getCommitsFetch = (search, page) => {
+const getCommitsFetch = (owner, nameRepo, branch) => {
     let getCommits = new GetCommits();
     return (dispatch) => {
         dispatch(getCommits.fetch())
-        getCommitsGit(search, page)
+        getCommitsGit(owner, nameRepo, branch)
         .then((response) => {
-            dispatch(getCommits.success(response,search, page))
+            dispatch(getCommits.success(response))
         })
         .catch((err) => {
             dispatch(getCommits.failure(err))
