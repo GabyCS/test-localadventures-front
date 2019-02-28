@@ -15,8 +15,9 @@ const getRepositoriesGit = (search, page) => {
     })
 }
 
-const getRepositoryGit = (fullname) => {
-  return fetch(URL_APP+"/repositories/"+fullname,{
+const getRepositoryGit = (owner, nameRepo) => {
+    console.log('entro')
+  return fetch(URL_APP+"/repositories/info/"+owner+"/"+nameRepo,{
       'method': 'GET',
       'headers':{
        'Content-type': 'application/json'

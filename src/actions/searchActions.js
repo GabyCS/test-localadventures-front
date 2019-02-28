@@ -39,7 +39,7 @@ class GetRepository  {
             type:"GET_REPOSITORY_FETCHING"
         }
     }
-    success(data, search, page){
+    success(data){
         return {
             type: "GET_REPOSITORY_SUCESS",
             data: data
@@ -90,13 +90,14 @@ const getRepositoriesFetch = (search, page) => {
     }
 }
 
-const getRepositoryFetch = (search, page) => {
+const getRepositoryFetch = (owner, nameRepo) => {
+    console.log(owner);
     let getRepository = new GetRepository();
     return (dispatch) => {
         dispatch(getRepository.fetch())
-        getRepositoryGit(search, page)
+        getRepositoryGit(owner, nameRepo)
         .then((response) => {
-            dispatch(getRepository.success(response,search, page))
+            dispatch(getRepository.success(response))
         })
         .catch((err) => {
             dispatch(getRepository.failure(err))

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {BrowserRouter, Route, Switch } from 'react-router-dom';
 import Dashboard from './containers/Dashboard';
+import Repository from './containers/Repository';
 import Header from './components/Header';
 import RepositoriesList from './components/Repositories';
 import ComponentTestRedux from './components/testComponents';
@@ -15,7 +16,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={Dashboard} />
             <Route exact path = '/repositorios/:search/:page' component={RepositoriesList} />
-            <Route exact path = '/repo/:nameOwner/:nameRepo' component={RepositoriesList} />
+            <Route exact path = '/repo/:owner/:nameRepo' component={Repository} />
 					  <Route exact path = '/test' component={ComponentTestRedux} />
           </Switch>
         </BrowserRouter>

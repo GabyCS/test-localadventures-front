@@ -47,7 +47,7 @@ class RepositoriesList extends Component{
                                     <div className="div-info-owner">
                                         <div className="text-name-owner">{i.owner.login}</div>
                                         <div className="text-name-repo">
-                                            <a href={"/repositorios/"+i.full_name}>{i.full_name}</a>
+                                            <a href={"/repo/"+i.owner.login+"/"+i.name}>{i.full_name}</a>
                                         </div>
                                         <div className="text-name-lang">{i.language}</div>
                                         <div className="text-name-desc">{i.description}</div>
