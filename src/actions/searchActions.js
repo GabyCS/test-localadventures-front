@@ -78,7 +78,6 @@ class GetCommits  {
 
 const getRepositoriesFetch = (search, page) => {
     let getRepositories = new GetRepositories();
-    console.log(getRepositories);
     return (dispatch) => {
         dispatch(getRepositories.fetch())
         getRepositoriesGit(search, page)
@@ -93,7 +92,6 @@ const getRepositoriesFetch = (search, page) => {
 
 const getRepositoryFetch = (search, page) => {
     let getRepository = new GetRepository();
-    console.log(getRepository);
     return (dispatch) => {
         dispatch(getRepository.fetch())
         getRepositoryGit(search, page)
@@ -108,7 +106,6 @@ const getRepositoryFetch = (search, page) => {
 
 const getCommitsFetch = (search, page) => {
     let getCommits = new GetCommits();
-    console.log(getCommits);
     return (dispatch) => {
         dispatch(getCommits.fetch())
         getCommitsGit(search, page)

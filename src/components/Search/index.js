@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 import {Card, Button, InputGroup, FormControl} from 'react-bootstrap';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import { push  } from 'react-router-redux'
-import {getRepositoriesFetch} from '../../actions/searchActions';
+
 class  Search extends Component {
     constructor(props){
         super(props);
@@ -14,7 +11,7 @@ class  Search extends Component {
         this.searchRepo = this.searchRepo.bind(this);
     }
     searchRepo(search) {
-        this.props.actions.getRepositoriesFetch(search, 1);
+        window.location = '/repositorios/'+search+'/1';
     }
     handleChange(e) {
         this.setState({ repo_search: e.target.value });
@@ -35,7 +32,7 @@ class  Search extends Component {
                         onChange={this.handleChange}
                         />
                         <InputGroup.Append>
-                            <Button variant="outline-info"
+                            <Button disabled={!this.state.repo_search} variant="outline-info"
                                 onClick={() => this.searchRepo(this.state.repo_search)}>Buscar</Button>
                         </InputGroup.Append>
                     </InputGroup>
@@ -45,18 +42,4 @@ class  Search extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        searchReducer: state.searchReducer
-    }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        actions: {
-            getRepositoriesFetch: bindActionCreators((search, page) => getRepositoriesFetch(search, page), dispatch)
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Search);
+export default Search;

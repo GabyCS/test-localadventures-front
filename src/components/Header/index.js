@@ -7,6 +7,17 @@ import {setStateFormSearch, getRepositoriesFetch} from '../../actions/searchActi
 class Header extends Component {
     constructor(props){
         super(props);
+        this.state = {
+            repo_search: ''
+        };
+        this.handleChange=this.handleChange.bind(this);
+        this.searchRepo = this.searchRepo.bind(this);
+    }
+    searchRepo(search) {
+        window.location = '/repositorios/'+search+'/1';
+    }
+    handleChange(e) {
+        this.setState({ repo_search: e.target.value });
     }
     render(){
         return (
@@ -19,10 +30,12 @@ class Header extends Component {
                     placeholder="Nombre Repositorio ..."
                     aria-label="Nombre Repositorio ..."
                     aria-describedby="basic-addon2"
+                    value = {this.state.repo_search}
+                    onChange={this.handleChange}
                     />
                     <InputGroup.Append>
-                    <Button variant="outline-info"
-                        onClick={this.props.actions.getRepositoriesFetch}>Buscar</Button>
+                    <Button disabled={!this.state.repo_search} variant="outline-info"
+                        onClick={() => this.searchRepo(this.state.repo_search)}>Buscar</Button>
                     </InputGroup.Append>
                 </InputGroup>}
             </Navbar>

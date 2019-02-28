@@ -14,8 +14,8 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
             <Route exact path='/' component={Dashboard} />
-            <Route exact path = '/repositorios' component={RepositoriesList} />
-            <Route exact path = '/repositorios/:nameOwner/:nameRepo' component={RepositoriesList} />
+            <Route exact path = '/repositorios/:search/:page' component={RepositoriesList} />
+            <Route exact path = '/repo/:nameOwner/:nameRepo' component={RepositoriesList} />
 					  <Route exact path = '/test' component={ComponentTestRedux} />
           </Switch>
         </BrowserRouter>

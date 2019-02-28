@@ -29,6 +29,7 @@ const searchRedurcer = (state = {
             }
         case "GET_REPOSITORIES_SUCESS":
             return {
+                showFormSearch: true,
                 repositories: action.data,
                 getRepositoriesFetch:false,
                 getRepositoriesSuccess:true,
