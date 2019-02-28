@@ -1,4 +1,4 @@
-import { getRepositoriesGit } from '../api/searchApi';
+import { getRepositoriesGit, getRepositoryGit } from '../api/searchApi';
 
 const setStateFormSearch = (showFormSearch) =>  {
     return {
@@ -17,7 +17,6 @@ class GetRepositories  {
         }
     }
     success(data, search, page){
-        window.sessionStorage.setItem('list_repos', JSON.stringify(data) )
         return {
             type: "GET_REPOSITORIES_SUCESS",
             data: data
@@ -26,7 +25,30 @@ class GetRepositories  {
     }
     failure(){
         return {
-            type: "GET_TAREAS_FAILURE"
+            type: "GET_REPOSITORIES_FAILURE"
+        }
+    }
+}
+
+class GetRepository  {
+    constructor(data){
+        this.data = data;
+    }
+    fetch(){
+        return {
+            type:"GET_REPOSITORY_FETCHING"
+        }
+    }
+    success(data, search, page){
+        return {
+            type: "GET_REPOSITORY_SUCESS",
+            data: data
+        }
+        
+    }
+    failure(){
+        return {
+            type: "GET_REPOSITORY_FAILURE"
         }
     }
 }
@@ -39,7 +61,6 @@ const getRepositoriesFetch = (search, page) => {
         getRepositoriesGit(search, page)
         .then((response) => {
             dispatch(getRepositories.success(response,search, page))
-            //window.location = "/repositorios?s="+search+"&p="+page;
         })
         .catch((err) => {
             dispatch(getRepositories.failure(err))
@@ -47,4 +68,19 @@ const getRepositoriesFetch = (search, page) => {
     }
 }
 
-export {setStateFormSearch, getRepositoriesFetch}
+const getRepositoryFetch = (search, page) => {
+    let getRepository = new GetRepository();
+    console.log(getRepository);
+    return (dispatch) => {
+        dispatch(getRepository.fetch())
+        getRepositoryGit(search, page)
+        .then((response) => {
+            dispatch(getRepository.success(response,search, page))
+        })
+        .catch((err) => {
+            dispatch(getRepository.failure(err))
+        });
+    }
+}
+
+export {setStateFormSearch, getRepositoriesFetch, getRepositoryFetch}
