@@ -16,11 +16,13 @@ class GetRepositories  {
             type:"GET_REPOSITORIES_FETCHING"
         }
     }
-    success(data){
+    success(data, search, page){
+        window.sessionStorage.setItem('list_repos', JSON.stringify(data) )
         return {
             type: "GET_REPOSITORIES_SUCESS",
             data: data
         }
+        
     }
     failure(){
         return {
@@ -29,15 +31,15 @@ class GetRepositories  {
     }
 }
 
-const getRepositoriesFetch = (data) => {
+const getRepositoriesFetch = (search, page) => {
     let getRepositories = new GetRepositories();
     console.log(getRepositories);
     return (dispatch) => {
         dispatch(getRepositories.fetch())
-        getRepositoriesGit(data)
+        getRepositoriesGit(search, page)
         .then((response) => {
-            dispatch(getRepositories.success(response))
-            
+            dispatch(getRepositories.success(response,search, page))
+            //window.location = "/repositorios?s="+search+"&p="+page;
         })
         .catch((err) => {
             dispatch(getRepositories.failure(err))

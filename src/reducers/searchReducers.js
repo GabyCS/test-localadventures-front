@@ -1,5 +1,5 @@
 const searchRedurcer = (state = {
-    showFormSearch: false,
+    showFormSearch: true,
     repositories:false,
     getRepositoriesFetch:false,
     getRepositoriesSuccess:false,
