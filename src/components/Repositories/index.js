@@ -71,9 +71,9 @@ class RepositoriesList extends Component{
         return (
             <Container>
                 <h1>REPOSITORIOS</h1>
-                {this.props.searchReducer.repositories && 
-                    this.renderListRepos(this.props.searchReducer.repositories)}
-                {this.props.searchReducer.repositories && 
+                {this.props.searchRepositoriesReducer.repositories && 
+                    this.renderListRepos(this.props.searchRepositoriesReducer.repositories)}
+                {this.props.searchRepositoriesReducer.repositories && 
                     <Row><Col xl={{span:8, offset:2}} lg={{span:8, offset:2}} md={{span:10, offset:1}}><Pagination
                     innerClass="pagination"
                     itemClass="page-item"
@@ -86,7 +86,7 @@ class RepositoriesList extends Component{
                     lastPageText='last'
                     activePage={this.state.activePage}
                     itemsCountPerPage={20}
-                    totalItemsCount={(this.props.searchReducer.repositories.total_count > 1000)?600:this.props.searchReducer.repositories.total_count}
+                    totalItemsCount={(this.props.searchRepositoriesReducer.repositories.total_count > 1000)?600:this.props.searchRepositoriesReducer.repositories.total_count}
                     pageRangeDisplayed={5}
                     onChange={this.handlePageChange}
                     /></Col></Row>}
@@ -100,7 +100,8 @@ class RepositoriesList extends Component{
 
 const mapStateToProps = (state) => {
     return {
-        searchReducer: state.searchReducer
+        searchReducer: state.searchReducer,
+        searchRepositoriesReducer: state.searchRepositoriesReducer
     }
 }
 

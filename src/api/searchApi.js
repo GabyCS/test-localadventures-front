@@ -16,7 +16,6 @@ const getRepositoriesGit = (search, page) => {
 }
 
 const getRepositoryGit = (owner, nameRepo) => {
-    console.log('entro')
   return fetch(URL_APP+"/repositories/info/"+owner+"/"+nameRepo,{
       'method': 'GET',
       'headers':{
@@ -31,8 +30,8 @@ const getRepositoryGit = (owner, nameRepo) => {
   })
 }
 
-const getCommitsGit = (fullname, branch) => {
-  return fetch(URL_APP+"/repositories/"+fullname+"/"+branch,{
+const getCommitsGit = (owner, nameRepo, branch) => {
+  return fetch(URL_APP+"/repositories/info/"+owner+"/"+nameRepo+"/"+branch+"/commits",{
       'method': 'GET',
       'headers':{
        'Content-type': 'application/json'
