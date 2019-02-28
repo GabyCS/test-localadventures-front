@@ -45,4 +45,4 @@ const getCommitsGit = (fullname, branch) => {
   })
 }
 
-export  {getRepositoriesGit, getRepositoryGit}
+export  {getRepositoriesGit, getRepositoryGit, getCommitsGit}

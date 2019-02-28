@@ -1,4 +1,4 @@
-import { getRepositoriesGit, getRepositoryGit } from '../api/searchApi';
+import { getRepositoriesGit, getRepositoryGit, getCommitsGit } from '../api/searchApi';
 
 const setStateFormSearch = (showFormSearch) =>  {
     return {
@@ -53,6 +53,29 @@ class GetRepository  {
     }
 }
 
+class GetCommits  {
+    constructor(data){
+        this.data = data;
+    }
+    fetch(){
+        return {
+            type:"GET_COMMITS_FETCHING"
+        }
+    }
+    success(data, search, page){
+        return {
+            type: "GET_COMMITS_SUCESS",
+            data: data
+        }
+        
+    }
+    failure(){
+        return {
+            type: "GET_COMMITS_FAILURE"
+        }
+    }
+}
+
 const getRepositoriesFetch = (search, page) => {
     let getRepositories = new GetRepositories();
     console.log(getRepositories);
@@ -83,4 +106,19 @@ const getRepositoryFetch = (search, page) => {
     }
 }
 
-export {setStateFormSearch, getRepositoriesFetch, getRepositoryFetch}
+const getCommitsFetch = (search, page) => {
+    let getCommits = new GetCommits();
+    console.log(getCommits);
+    return (dispatch) => {
+        dispatch(getCommits.fetch())
+        getCommitsGit(search, page)
+        .then((response) => {
+            dispatch(getCommits.success(response,search, page))
+        })
+        .catch((err) => {
+            dispatch(getCommits.failure(err))
+        });
+    }
+}
+
+export {setStateFormSearch, getRepositoriesFetch, getRepositoryFetch, getCommitsFetch};
